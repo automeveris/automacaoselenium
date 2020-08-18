@@ -1,4 +1,4 @@
-Feature: Verificar a opcao
+Feature: Checkbox
 	
 	Scenario: Verificar check1 pressionado
 		Given eu ingresso na tela

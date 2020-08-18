@@ -19,8 +19,8 @@ public class ClassInit {
     
     @Before
     public void initializeTest() {
-        System.setProperty("webdriver.chrome.driver","./drivers/chromedriver");
-        driver = new ChromeDriver(addOptions());
+        System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+        driver = new ChromeDriver();//addOptions());
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -32,18 +32,18 @@ public class ClassInit {
     
     
     //Apenas para linux
-    static ChromeOptions addOptions(){
-	    String so = System.getProperty("os.name").toLowerCase();
-	    so = so.replaceAll(" ", "");
-	    so = so.replaceAll("[0-9]", "");
-	    ChromeOptions options = new ChromeOptions();
-	    
-	    if("linux".equals(so)){
-	    	//options.addArguments("--headless");
-	        options.addArguments("--no-sandbox");
-	    }
-	    
-		return options;
-	}
+//    static ChromeOptions addOptions(){
+//	    String so = System.getProperty("os.name").toLowerCase();
+//	    so = so.replaceAll(" ", "");
+//	    so = so.replaceAll("[0-9]", "");
+//	    ChromeOptions options = new ChromeOptions();
+//	    
+//	    if("linux".equals(so)){
+//	    	//options.addArguments("--headless");
+//	        options.addArguments("--no-sandbox");
+//	    }
+//	    
+//		return options;
+//	}
     
 }
