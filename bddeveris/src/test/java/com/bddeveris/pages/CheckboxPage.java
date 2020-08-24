@@ -21,6 +21,7 @@ public class CheckboxPage {
 	}
 	
 	public void openUrl(String url) {
+		this.driver = ClassInit.driver;
 		this.driver.get(url);
 	}
 	

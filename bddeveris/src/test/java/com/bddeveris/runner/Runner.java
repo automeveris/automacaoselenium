@@ -12,9 +12,8 @@ import org.junit.runner.RunWith;
 		    "html:target/site/cucumber-pretty",
 		    "json:target/site/cucumber.json"
  		  },
- //No caso de adicionar uma tag na feature para executar apenas essa feature ou scenario
- tags ={"@check2"})
+tags ={"@addRemoveElements"})
  
-public class Runner{
-
+public class Runner {
+	
 }
