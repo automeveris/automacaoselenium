@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -16,7 +17,6 @@ public class ClassInit {
 
 	
     public static WebDriver driver;
-	
    
     @Before
     public void initializeTest() {
