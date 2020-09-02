@@ -2,6 +2,7 @@ package com.bddeveris.steps;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,13 +21,19 @@ public class CommonSteps {
 	WebDriver driver;
 	CommonPage page;
 	WebDriverWait wait = new WebDriverWait(ClassInit.driver, 10);
+	JavascriptExecutor js = (JavascriptExecutor) ClassInit.driver;
 
 	@Given("que eu ingresso na url {string}")
 	public void que_eu_ingresso_na_tela(String url) {
-		page = new CommonPage(ClassInit.driver);
+		this.driver = ClassInit.driver;
+		//page = new CommonPage(ClassInit.driver);
+		page = new CommonPage(driver);
 		page.openUrl(url);
 	}
 
+	/**Método que verifica se uma mensagem é exibida na tela
+	 * @param expected - Texto que se espera encontrar
+	 */
 	@Then("eu verifico se a mensagem {string} é exibida")
 	public void eu_verifico_se_a_mensagem_é_exibida(String expected) {
 		waitElementVisibility(page.notificationText());
@@ -45,12 +52,55 @@ public class CommonSteps {
 		page.buttonByText(text).click();
 	}
 
-	  public void waitElementBeClickable(WebElement element) {
+	/**Método para rolar a página informando a quantidade de pixels e a direção
+	 * @param pixels - quantidade de pixels que se deseja rolar a página
+	 * @param direction - para "cima" ou para "baixo"
+	 */
+	@When("eu rolo a página {int} pixels para {string}")
+	public void eu_rolo_a_página_pixels_para(Integer pixels, String direction) {
+		int pxl =0;
+		if(direction.equals("cima")) {
+			pxl = pixels *-1;
+		}else if(direction.equals("baixo")) {
+			pxl = pixels;
+		}
+		js.executeScript("window.scrollBy(0,"+pxl+")");
+	}
+
+	/**Método para buscar um texto específico enquanto rola a página
+	 * @param occurrence - o número da ocorrência que se deseja busca (ex. 1 para primeira, 2 para a segunda etc.)
+	 * @param text - Texto que se deseja encontrar
+	 * @throws Exception - Erro se o texto não for encontrado
+	 */
+	@When("eu rolo página até a {int} a. ocorrência do texto {string}")
+	public void eu_rolo_página_até_a_a_ocorrência_do_texto(Integer occurrence, String text) throws Exception {
+		int SCROLL = 300;
+		int scroll_count = 0;
+		int SCROLL_LIMIT = 10000; 	
+		int check = 0;
+	   while(scroll_count <= SCROLL_LIMIT) {
+		   check = driver.findElements(By.xpath("//div[contains(text(),"+text+")]["+occurrence+"]")).size();
+		   if(check==0) {
+			   js.executeScript("window.scrollBy(0,"+SCROLL+")");
+			   scroll_count += SCROLL;		   
+		   } else {
+			   if(scroll_count<= SCROLL_LIMIT && check ==0) {
+				   throw new Exception("O texto não foi encontrado");
+			   }
+			   break;
+		   }
+	   }
+	}
+
+	  /**Método de espera até que um elemento seja clicável
+	 * @param element - WebElement que deverá ser clicável
+	 */
+	public void waitElementBeClickable(WebElement element) {
 	 	wait.until(ExpectedConditions.elementToBeClickable(element));
 	 }
 
 	  public void waitElementVisibility(WebElement element) {
 		  wait.until(ExpectedConditions.visibilityOf(element));
 	  }
-	 	 
+
 }

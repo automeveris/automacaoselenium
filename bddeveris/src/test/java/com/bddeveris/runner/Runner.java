@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 		    "html:target/site/cucumber-pretty",
 		    "json:target/site/cucumber.json"
  		  },
-tags ={"@formAuthentication"})
+tags ={"@scroll"})
  
 public class Runner {
 	
