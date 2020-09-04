@@ -16,19 +16,46 @@ public class MethodsUtils {
 	}
 	
 	public WebElement getElement(String type, String value) throws InterruptedException{
-		type = type.toLowerCase();
-		if(type == "xpath") {
-			elem = this.driver.findElement(By.xpath(value));
-			System.out.println("Elemento encontrado");
-			Thread.sleep(2000);
+		try {
+			type = type.toLowerCase();
+			if(type == "xpath") {
+				elem = this.driver.findElement(By.xpath(value));
+				System.out.println("Elemento encontrado");
+				Thread.sleep(2000);
+			}
+			return elem;
+		} 
+		catch( Exception e)
+		{
+			System.out.println("Elemento não foi encontrado");
+			return elem;
 		}
-		return elem;
+		
 	}
 	
 	public void clicarElemento(String type, String value) throws InterruptedException {
-		elem = getElement(type, value);
-		elem.click();
-		System.out.println("Elemento clicado com sucesso");
-		Thread.sleep(2000);
+		try{
+			elem = getElement(type, value);
+			elem.click();
+			System.out.println("Elemento clicado com sucesso");
+			Thread.sleep(2000);
+		} 
+		catch( Exception e)
+		{
+			System.out.println("Não foi possivel clicar no elemento");
+		}
+	}
+	
+	public void enviarMensagem(String type, String value, String mensagem) throws InterruptedException {
+		try {
+			elem = getElement(type, value);
+			elem.sendKeys(mensagem);
+			System.out.println("Mensagem foi enviado com sucesso");
+			Thread.sleep(2000);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Não foi possivel enviar a mensagem");
+		}
 	}
 }
