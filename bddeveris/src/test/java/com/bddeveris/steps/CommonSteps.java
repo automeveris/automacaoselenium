@@ -55,9 +55,10 @@ public class CommonSteps {
 	/**Método para rolar a página informando a quantidade de pixels e a direção
 	 * @param pixels - quantidade de pixels que se deseja rolar a página
 	 * @param direction - para "cima" ou para "baixo"
+	 * @throws InterruptedException 
 	 */
 	@When("eu rolo a página {int} pixels para {string}")
-	public void eu_rolo_a_página_pixels_para(Integer pixels, String direction) {
+	public void eu_rolo_a_página_pixels_para(Integer pixels, String direction) throws InterruptedException {
 		int pxl =0;
 		if(direction.equals("cima")) {
 			pxl = pixels *-1;
@@ -65,6 +66,7 @@ public class CommonSteps {
 			pxl = pixels;
 		}
 		js.executeScript("window.scrollBy(0,"+pxl+")");
+		Thread.sleep(1000); // O motivo dessa espera é para conseguirmos ver a ação
 	}
 
 	/**Método para buscar um texto específico enquanto rola a página
