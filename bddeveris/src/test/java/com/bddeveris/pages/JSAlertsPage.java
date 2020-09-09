@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 
 import com.bddeveris.utils.MethodsUtils;
 
-
 public class JSAlertsPage {
 	
 	WebDriver driver;
@@ -78,7 +77,7 @@ public class JSAlertsPage {
 			
 	//-------------------------------------------------------------------------
 	
-	
+
 	
 	//Metodo para verificar resultado depois de aceitar ou cancelar
 	public void verificarResultado(String resultEsperado) {
