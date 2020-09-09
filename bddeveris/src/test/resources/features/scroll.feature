@@ -6,8 +6,8 @@ Feature: Rolagem de páginas
 
 	Scenario Outline: Rolar uma página
 		When eu rolo a página <pixels1> pixels para <direcao1>
-		When eu rolo a página <pixels2> pixels para <direcao2>
-		When eu rolo página até a <ocorrencia> a. ocorrência do texto <texto>
+		And eu rolo a página <pixels2> pixels para <direcao2>
+		Then eu rolo página até a <ocorrencia> a. ocorrência do texto <texto>
 
 		Examples:
 	  	|pixels1	|direcao1	|pixels2|direcao2	|ocorrencia	|texto			|

@@ -65,6 +65,7 @@ public class CommonSteps {
 		}else if(direction.equals("baixo")) {
 			pxl = pixels;
 		}
+	
 		js.executeScript("window.scrollBy(0,"+pxl+")");
 		Thread.sleep(1000); // O motivo dessa espera é para conseguirmos ver a ação
 	}
@@ -74,7 +75,7 @@ public class CommonSteps {
 	 * @param text - Texto que se deseja encontrar
 	 * @throws Exception - Erro se o texto não for encontrado
 	 */
-	@When("eu rolo página até a {int} a. ocorrência do texto {string}")
+	@Then("eu rolo página até a {int} a. ocorrência do texto {string}")
 	public void eu_rolo_página_até_a_a_ocorrência_do_texto(Integer occurrence, String text) throws Exception {
 		int SCROLL = 300;
 		int scroll_count = 0;
@@ -97,7 +98,7 @@ public class CommonSteps {
 	  /**Método de espera até que um elemento seja clicável
 	 * @param element - WebElement que deverá ser clicável
 	 */
-	public void waitElementBeClickable(WebElement element) {
+	public void waitElementBJeClickable(WebElement element) {
 	 	wait.until(ExpectedConditions.elementToBeClickable(element));
 	 }
 

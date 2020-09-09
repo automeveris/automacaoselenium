@@ -1,8 +1,10 @@
 package com.bddeveris.steps;
 
 import org.openqa.selenium.WebDriver;
+
 import com.bddeveris.pages.JSAlertsPage;
 import com.bddeveris.runner.ClassInit;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,7 +14,7 @@ public class JSAlertsSteps {
 	
 	WebDriver driver;
 	JSAlertsPage jsp;
-
+	
 	
 	@Given("que eu ingresso na tela de alertas JS")
 	public void que_eu_ingresso_na_tela_de_alertas_JS() {
